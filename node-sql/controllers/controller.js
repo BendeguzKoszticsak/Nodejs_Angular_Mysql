@@ -22,10 +22,12 @@ exports.createUser = (req, res) => {
 
 exports.createBook = (req, res) => {
   const help = ({
-    name: req.body.name,
-    genre: req.body.genre,
-    pages: req.body.pages,
-    available: req.body.available
+    isbn: req.body.isbn,
+    title: req.body.title,
+    authors: req.body.authors,
+    published: req.body.published,
+    description: req.body.description,
+    coverImage: req.body.coverImage
   })
   Book.create(help)
   .then(data => {
@@ -70,6 +72,14 @@ exports.updateUser = (req, res) => {
       }
     })
   }
+
+exports.findAllBook = (req, res) => {
+
+  Book.findAll()
+    .then(data => {
+      res.send(data);
+    })
+}
 
 exports.deleteBook = (req, res) => {
   const id = req.params.id;

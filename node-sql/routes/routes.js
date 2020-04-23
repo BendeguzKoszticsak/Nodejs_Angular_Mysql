@@ -21,6 +21,8 @@ module.exports = app => {
 
     router.get("/user/condition/:id", asd.findUserById);
 
+    router.get("/bookAll", asd.findAllBook);
+
     
 
     

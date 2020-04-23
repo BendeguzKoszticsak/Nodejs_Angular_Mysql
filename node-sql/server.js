@@ -1,17 +1,18 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const cors = require("cors");
 
 const app = express();
 var db = require("/home/goofy/node-sql/models");
 const controller = require("./controllers/controller");
 
+var cors = require('cors')
 var corsOptions = {
   origin: "http://localhost:8081"
 };
 
-app.use(cors(corsOptions));
 
+
+app.use(cors());
 
 app.use(bodyParser.json());
 

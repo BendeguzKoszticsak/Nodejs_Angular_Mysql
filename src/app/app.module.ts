@@ -1,26 +1,47 @@
-import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
+import { RouterModule, Routes } from '@angular/router';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
-import { DashboardComponent } from './dashboard.component';
-import { AboutComponent } from './about.component';
+
+
+import {
+  BooksListComponent,
+  BookDetailsComponent,
+  NewBookComponent,
+  BookStoreService
+} from './books';
+
 import { Safe } from './safe';
 
-import { AppRoutingModule } from './app-routing.module';
-import { BooksModule } from './books/books.module';
+const routes: Routes = [
+  {path: '', redirectTo: 'books', pathMatch: 'full'},
+  {path: 'books', component: BooksListComponent},
+  {path: 'books/new', component: NewBookComponent},
+  {path: 'books/:id', component: BookDetailsComponent},
+
+];
 
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent,
-    AboutComponent,
+
+    BooksListComponent,
+    BookDetailsComponent,
+    NewBookComponent,
     Safe
   ],
   imports: [
     BrowserModule,
-    BooksModule,
-    AppRoutingModule
+    ReactiveFormsModule,
+    HttpModule,
+    BrowserAnimationsModule,
+    RouterModule.forRoot(routes)
   ],
+  providers: [BookStoreService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
